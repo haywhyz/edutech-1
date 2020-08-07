@@ -159,6 +159,7 @@ DROP TABLE IF EXISTS `subjects`;
 CREATE TABLE IF NOT EXISTS `subjects` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+    `teacher_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -168,10 +169,10 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'English Language', '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(2, 'Mathematics', '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(3, 'Computer Studies', '2020-04-15 10:42:13', '2020-04-15 10:42:13');
+INSERT INTO `subjects` (`id`, `name`, `teacher_id`, `created_at`, `updated_at`) VALUES
+(1, 'English Language', '1', '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
+(2, 'Mathematics', '2', '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
+(3, 'Computer Studies', '3', '2020-04-15 10:42:13', '2020-04-15 10:42:13');
 
 -- --------------------------------------------------------
 
@@ -233,6 +234,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `class` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -246,10 +249,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Tellas', 'user@user.com', NULL, '$2y$10$FPIGgq.J/uobzOZ8JR8Tz.BYCliXdrTy491BlB.u1vveeJCWIrZ0W', 'z1BHBBKWejgzV5533FIZXdrDZIK5hJz01z5BdzE6NLwcTi64SREQvY2NifZG', '2019-01-30 23:35:57', '2019-02-12 01:06:25'),
-(2, 'Joshua Paul', 'veecthorpaul@gmail.com', NULL, '$2y$10$r4gw0Ak.JDj8jJ4dMwgJ1.vFDlqz8eNZ7xX9WgXrYJcNX5iyyl4xO', 'miQkNctHqOG7n1x2HX0PgljlWGprQqZlrLGlhm2UthHCYI1F7gLLtWwwZIwO', '2020-08-06 08:21:08', '2020-08-06 08:21:08'),
-(3, 'Joshua Pauls', 'pauljoshua45@gmail.com', NULL, '$2y$10$MW1w1mIT4VK3DkxyeWLkd.cvYUkWJFVSCFZ2GRYpZ/UaQTtUz73IS', 'KhWDTwOWyOyE5i2Fz8oV44qBL8b6JY3se6ilJFyga9EGad8vN0jBPG3XvJaN', '2020-08-06 09:13:44', '2020-08-06 09:13:44');
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `class`,`email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Tellas', 'user@user.com', 'student', 'JSS 1',  NULL, '$2y$10$FPIGgq.J/uobzOZ8JR8Tz.BYCliXdrTy491BlB.u1vveeJCWIrZ0W', 'z1BHBBKWejgzV5533FIZXdrDZIK5hJz01z5BdzE6NLwcTi64SREQvY2NifZG', '2019-01-30 23:35:57', '2019-02-12 01:06:25'),
+(2, 'Joshua Paul', 'veecthorpaul@gmail.com', 'teacher', 'JSS 1' NULL, '$2y$10$r4gw0Ak.JDj8jJ4dMwgJ1.vFDlqz8eNZ7xX9WgXrYJcNX5iyyl4xO', 'miQkNctHqOG7n1x2HX0PgljlWGprQqZlrLGlhm2UthHCYI1F7gLLtWwwZIwO', '2020-08-06 08:21:08', '2020-08-06 08:21:08'),
+(3, 'Joshua Pauls', 'pauljoshua45@gmail.com', 'teacher', 'JSS 2', NULL, '$2y$10$MW1w1mIT4VK3DkxyeWLkd.cvYUkWJFVSCFZ2GRYpZ/UaQTtUz73IS', 'KhWDTwOWyOyE5i2Fz8oV44qBL8b6JY3se6ilJFyga9EGad8vN0jBPG3XvJaN', '2020-08-06 09:13:44', '2020-08-06 09:13:44');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

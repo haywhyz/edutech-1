@@ -39,8 +39,8 @@
     <div class="container body">
       <div class="main_container">
           <!-- Navigation-->
-    @include('user.inc.sidebar')
-    @include('user.inc.topnavbar')
+    @include('student.inc.sidebar')
+    @include('student.inc.topnavbar')
     <!-- /Navigation-->
 
     <div class="content-wrapper">
@@ -49,7 +49,7 @@
 <!-- /.container-fluid-->
 </div>
 <!-- Footer -->
-@include('user.inc.footer')
+@include('student.inc.footer')
 </div>
 </div>
 

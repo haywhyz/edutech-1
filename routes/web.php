@@ -15,9 +15,8 @@ Route::get('/', 'HomeController@index')->name('welcome');
 
 Auth::routes();
 
-Route::get('/home', 'UserController@dashboard')->name('home');
-Route::get('/category/{type}', 'UserController@category')->name('game.category');
-Route::get('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+Route::get('/student', 'StudentController@dashboard')->name('student')->middleware(['auth', 'student']);
+Route::get('/teacher', 'TeacherController@dashboard')->name('teacher')->middleware(['auth', 'teacher']);;
 
 Route::prefix('admin')->group(function(){
 	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
