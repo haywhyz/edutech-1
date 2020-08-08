@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Subject;
 
 class User extends Authenticatable
 {
@@ -16,8 +17,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'role', 'class', 'password',
     ];
+
+    public function subjects()
+    {
+        return $this->hasMany('App\Subject');
+    }
 
     /**
      * The attributes that should be hidden for arrays.

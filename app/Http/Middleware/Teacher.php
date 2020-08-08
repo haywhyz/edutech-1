@@ -25,7 +25,7 @@ class Teacher
                     return $next($request);
                 }
                 else{
-                    return redirect('/');
+                    return redirect('/student');
                 }
         }
     }

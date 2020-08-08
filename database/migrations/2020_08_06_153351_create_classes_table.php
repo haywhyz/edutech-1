@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateResourcesTable extends Migration
+class CreateClassesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateResourcesTable extends Migration
      */
     public function up()
     {
-        Schema::create('resources', function (Blueprint $table) {
+        Schema::create('classes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('subject_id');
-            $table->integer('week_id');
-            $table->integer('topic_id')->unsigned();
-            $table->foreign('topic_id')->references('id')->on('topics');
-            $table->string('file');
+            $table->string('name');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -32,6 +27,6 @@ class CreateResourcesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resources');
+        Schema::dropIfExists('classes');
     }
 }

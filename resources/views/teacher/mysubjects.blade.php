@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('teacher.layouts.app')
 
 @section('content')   <!-- page content -->
 <div class="right_col" role="main">
@@ -13,7 +13,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Subjects List</h2>
+              <h2>Subjects</h2>
               <div class="clearfix"></div>
             </div>
             @php($no=0)
@@ -23,9 +23,8 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Teacher In Charge</th>
-                    <th>Date Added</th>
+                    <th>Subject Name</th>
+                    <th>View</th>
                   </tr>
                 </thead>
 
@@ -35,8 +34,7 @@
                   <tr>
                   <td>{{$no++}}</td>
                     <td>{{$subject->name}}</td>
-                    <td>{{$subject->teacher}}</td>
-                    <td>{{$subject->created_at}}</td>
+                    <td><button class="primary"></button></td>
                   </tr>
                   @endforeach
                 </tbody>

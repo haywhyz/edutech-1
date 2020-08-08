@@ -47,7 +47,10 @@ class AdminController extends Controller
 
     public function subjects()
     {
-        $subjects = Subject::get();
+      $subjects = DB::table('subjects')
+      ->join('users', 'users.id', '=', 'subjects.teacher_id')
+      ->select('users.name as teacher', 'subjects.*')
+      ->get();
         return view('admin.subjects')->with(['subjects' => $subjects]);
     }
 

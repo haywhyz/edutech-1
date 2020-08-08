@@ -15,8 +15,16 @@ Route::get('/', 'HomeController@index')->name('welcome');
 
 Auth::routes();
 
+// Students Route
 Route::get('/student', 'StudentController@dashboard')->name('student')->middleware(['auth', 'student']);
-Route::get('/teacher', 'TeacherController@dashboard')->name('teacher')->middleware(['auth', 'teacher']);;
+Route::get('/student/myteachers', 'StudentController@myteachers')->name('myteachers')->middleware(['auth', 'student']);
+Route::get('/student/myprofile', 'StudentController@myprofile')->name('myprofile')->middleware(['auth', 'student']);
+Route::get('/student/mysubjects', 'StudentController@mysubjects')->name('mysubjects')->middleware(['auth', 'student']);
+
+// Teachers Route
+Route::get('/teacher', 'TeacherController@dashboard')->name('teacher')->middleware(['auth', 'teacher']);
+Route::get('/teacher/mystudents', 'TeacherController@mystudents')->name('mystudents')->middleware(['auth', 'teacher']);
+Route::get('/teacher/mysubjects', 'TeacherController@mysubjects')->name('mysubjects')->middleware(['auth', 'teacher']);
 
 Route::prefix('admin')->group(function(){
 	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');

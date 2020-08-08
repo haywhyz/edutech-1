@@ -16,9 +16,11 @@ class CreateTopicsTable extends Migration
         Schema::create('topics', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('subject_id');
+            $table->integer('subject_id')->unsigned();
             $table->integer('week_id');
+            $table->foreign('subject_id')->references('id')->on('subjects');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

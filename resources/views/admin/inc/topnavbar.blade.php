@@ -8,16 +8,23 @@
 
         <ul class="nav navbar-nav navbar-right">
          
-          <li class="">
-            <a href="{{ route('user.logout') }}" class="user-profile dropdown-toggle" aria-expanded="false">
-              Logout
+          <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                {{ Auth::user()->name }} <span class="caret"></span>
             </a>
-          </li>
-          <li class="">
-            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              <img src="" alt="">{{Auth()->user()->name }}
-            </a>
-          </li>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
+        </li>
         </ul>
       </nav>
     </div>

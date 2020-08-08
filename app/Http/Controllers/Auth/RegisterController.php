@@ -28,13 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected function authenticated($request) {
-        $user = Auth::user()->role;
-        if ($user=='student'){
-            return redirect('/student');
-        }
-        return redirect ('/teacher');
-    } 
+    protected $redirectTo = '/student';
 
     /**
      * Create a new controller instance.
@@ -56,6 +50,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'role' => ['required', 'string', 'max:255'],
+            'class' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -72,6 +68,8 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'role' => $data['role'],
+            'class' => $data['class'],
             'password' => Hash::make($data['password']),
         ]);
     }

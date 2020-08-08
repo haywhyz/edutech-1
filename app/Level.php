@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 
-class Subject extends Model
+class Level extends Model
 {
     protected $fillable = [
-        'name', 'teacher_id', 'class_id',
+        'name',
     ];
 
 

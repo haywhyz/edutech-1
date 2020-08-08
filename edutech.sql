@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 06, 2020 at 04:42 PM
+-- Generation Time: Aug 08, 2020 at 01:37 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -48,7 +48,31 @@ CREATE TABLE IF NOT EXISTS `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Josh Paul', 'admin@admin.com', NULL, '$2y$10$ymirMZviztWxVkicW2xXTuzCWTJIo1H///vZ6uzs51m0GZD3eYo1e', 'CzKYXTpUr2uFtiEhdckHOrB7zyambdmg0IyJsEYLfD0VkxP7j7Y4Clc0smcD', '2019-01-31 01:06:01', '2019-02-12 05:09:45');
+(1, 'Josh Paul', 'admin@admin.com', NULL, '$2y$10$ymirMZviztWxVkicW2xXTuzCWTJIo1H///vZ6uzs51m0GZD3eYo1e', 'CzKYXTpUr2uFtiEhdckHOrB7zyambdmg0IyJsEYLfD0VkxP7j7Y4Clc0smcD', '2019-01-31 00:06:01', '2019-02-12 04:09:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `classes`
+--
+
+DROP TABLE IF EXISTS `classes`;
+CREATE TABLE IF NOT EXISTS `classes` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `classes`
+--
+
+INSERT INTO `classes` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'JSS1', NULL, NULL),
+(2, 'JSS2', NULL, NULL),
+(3, 'JSS3', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -62,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -76,7 +100,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2020_08_06_114844_create_resources_table', 1),
 (6, '2020_08_06_152514_create_transactions_table', 1),
 (7, '2020_08_06_153154_create_subjects_table', 1),
-(8, '2020_08_06_153351_create_topics_table', 1);
+(8, '2020_08_06_153351_create_topics_table', 1),
+(9, '2020_08_06_153351_create_classes_table', 2);
 
 -- --------------------------------------------------------
 
@@ -115,9 +140,9 @@ CREATE TABLE IF NOT EXISTS `payments` (
 --
 
 INSERT INTO `payments` (`paymentId`, `student_id`, `amount`, `subject_id`, `payment_status`, `created_at`, `updated_at`) VALUES
-(1, 1, 18000, '1', 'Approved', '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(2, 2, 28000, '2', 'Approved', '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(3, 3, 30000, '3', 'Pending', '2020-04-15 10:42:13', '2020-04-15 10:42:13');
+(1, 1, 18000, '1', 'Approved', '2020-04-15 09:42:13', '2020-04-15 09:42:13'),
+(2, 2, 28000, '2', 'Approved', '2020-04-15 09:42:13', '2020-04-15 09:42:13'),
+(3, 3, 30000, '3', 'Pending', '2020-04-15 09:42:13', '2020-04-15 09:42:13');
 
 -- --------------------------------------------------------
 
@@ -130,24 +155,26 @@ CREATE TABLE IF NOT EXISTS `resources` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `subject_id` int(11) NOT NULL,
   `week_id` int(11) NOT NULL,
-  `topic_id` int(11) NOT NULL,
+  `topic_id` int(10) UNSIGNED NOT NULL,
   `file` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `resources_topic_id_foreign` (`topic_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `resources`
 --
 
-INSERT INTO `resources` (`id`, `subject_id`, `week_id`, `topic_id`, `file`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, 'active.mp4', '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(2, 1, 2, 2, 'passive.mp4', '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(3, 2, 1, 1, 'algebra.docx', '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(4, 2, 2, 2, 'theorem.pdf', '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(5, 3, 1, 1, 'mousebasics.pdf', '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(6, 3, 2, 2, 'keyboard.webp', '2020-04-15 10:42:13', '2020-04-15 10:42:13');
+INSERT INTO `resources` (`id`, `subject_id`, `week_id`, `topic_id`, `file`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 1, 1, 'active.mp4', '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
+(2, 1, 2, 2, 'passive.mp4', '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
+(3, 2, 1, 1, 'algebra.docx', '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
+(4, 2, 2, 2, 'theorem.pdf', '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
+(5, 3, 1, 1, 'mousebasics.pdf', '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
+(6, 3, 2, 2, 'keyboard.webp', '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -158,21 +185,24 @@ INSERT INTO `resources` (`id`, `subject_id`, `week_id`, `topic_id`, `file`, `cre
 DROP TABLE IF EXISTS `subjects`;
 CREATE TABLE IF NOT EXISTS `subjects` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `teacher_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `teacher_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `class_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `subjects_teacher_id_foreign` (`teacher_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`id`, `name`, `teacher_id`, `created_at`, `updated_at`) VALUES
-(1, 'English Language', '1', '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(2, 'Mathematics', '2', '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(3, 'Computer Studies', '3', '2020-04-15 10:42:13', '2020-04-15 10:42:13');
+INSERT INTO `subjects` (`id`, `teacher_id`, `name`, `class_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'English Language', 'JSS1', '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
+(2, 2, 'Mathematics', 'JSS2', '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
+(3, 3, 'Computer Studies', 'JSS3', '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -184,24 +214,26 @@ DROP TABLE IF EXISTS `topics`;
 CREATE TABLE IF NOT EXISTS `topics` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subject_id` int(11) NOT NULL,
+  `subject_id` int(10) UNSIGNED NOT NULL,
   `week_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `topics_subject_id_foreign` (`subject_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `topics`
 --
 
-INSERT INTO `topics` (`id`, `name`, `subject_id`, `week_id`, `created_at`, `updated_at`) VALUES
-(1, 'Passive Voice ', 1, 1, '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(2, 'Algebra', 2, 1, '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(3, 'The Mouse', 3, 1, '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(4, 'The Keyboard', 3, 2, '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(5, 'Pythagoras Theorem', 2, 2, '2020-04-15 10:42:13', '2020-04-15 10:42:13'),
-(6, 'Active Voice ', 1, 2, '2020-04-15 10:42:13', '2020-04-15 10:42:13');
+INSERT INTO `topics` (`id`, `name`, `subject_id`, `week_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Passive Voice ', 1, 1, '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
+(2, 'Algebra', 2, 1, '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
+(3, 'The Mouse', 3, 1, '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
+(4, 'The Keyboard', 3, 2, '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
+(5, 'Pythagoras Theorem', 2, 2, '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
+(6, 'Active Voice ', 1, 2, '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -233,9 +265,9 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `class` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -249,10 +281,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `role`, `class`,`email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Tellas', 'user@user.com', 'student', 'JSS 1',  NULL, '$2y$10$FPIGgq.J/uobzOZ8JR8Tz.BYCliXdrTy491BlB.u1vveeJCWIrZ0W', 'z1BHBBKWejgzV5533FIZXdrDZIK5hJz01z5BdzE6NLwcTi64SREQvY2NifZG', '2019-01-30 23:35:57', '2019-02-12 01:06:25'),
-(2, 'Joshua Paul', 'veecthorpaul@gmail.com', 'teacher', 'JSS 1' NULL, '$2y$10$r4gw0Ak.JDj8jJ4dMwgJ1.vFDlqz8eNZ7xX9WgXrYJcNX5iyyl4xO', 'miQkNctHqOG7n1x2HX0PgljlWGprQqZlrLGlhm2UthHCYI1F7gLLtWwwZIwO', '2020-08-06 08:21:08', '2020-08-06 08:21:08'),
-(3, 'Joshua Pauls', 'pauljoshua45@gmail.com', 'teacher', 'JSS 2', NULL, '$2y$10$MW1w1mIT4VK3DkxyeWLkd.cvYUkWJFVSCFZ2GRYpZ/UaQTtUz73IS', 'KhWDTwOWyOyE5i2Fz8oV44qBL8b6JY3se6ilJFyga9EGad8vN0jBPG3XvJaN', '2020-08-06 09:13:44', '2020-08-06 09:13:44');
+INSERT INTO `users` (`id`, `name`, `role`, `class`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Tellas', 'student', 'JSS1', 'user@user.com', NULL, '$2y$10$FPIGgq.J/uobzOZ8JR8Tz.BYCliXdrTy491BlB.u1vveeJCWIrZ0W', 'SLluMySjCxTjjXHVPGNi1D21aPQA6dkrS3hqCVYYAh2a6JPApp2ca9lci1Hj', '2019-01-30 22:35:57', '2019-02-12 00:06:25'),
+(2, 'Joshua Paul', 'teacher', 'JSS1', 'veecthorpaul@gmail.com', NULL, '$2y$10$r4gw0Ak.JDj8jJ4dMwgJ1.vFDlqz8eNZ7xX9WgXrYJcNX5iyyl4xO', '9VWnN26ycsVM59KYbZd5LX5PXJYMe2cznQz7ouDJ53wQGQurWsXogxC2kfUc', '2020-08-06 07:21:08', '2020-08-06 07:21:08'),
+(3, 'Joshua Pauls', 'teacher', 'JSS2', 'pauljoshua45@gmail.com', NULL, '$2y$10$MW1w1mIT4VK3DkxyeWLkd.cvYUkWJFVSCFZ2GRYpZ/UaQTtUz73IS', 'KhWDTwOWyOyE5i2Fz8oV44qBL8b6JY3se6ilJFyga9EGad8vN0jBPG3XvJaN', '2020-08-06 08:13:44', '2020-08-06 08:13:44');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

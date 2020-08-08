@@ -5,7 +5,8 @@
     <!-- top tiles -->
     <div class="row tile_count">
      
-    Student Dashboard
+    Student Dashboard <br>
+    {{$user->email}}
     </div>
   </div>
   <!-- /page content -->
