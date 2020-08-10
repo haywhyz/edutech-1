@@ -1,6 +1,6 @@
 
 ### EduTech
-This is an mvp for an edutech website using php(laravel) which can be assecced on this link
+This is an mvp for an edutech website using php(laravel) which can be accessed on this link
 https://ecxedu.000webhostapp.com
 
 There was one contributor https://github.com/haywhyz
