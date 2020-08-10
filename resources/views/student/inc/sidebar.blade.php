@@ -25,8 +25,9 @@
             <li><a><i class="fa fa-home"></i> Menu <span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
               <li><a href="{{ route('student')}}">My Profile</a></li>
-              <li><a href="{{ route('myteachers')}}">My Students</a></li>
-                <li><a href="{{ route('mysubjects')}}">Subjects</a></li>
+              <li><a href="{{ route('mypayments')}}">My Payments</a></li>
+              <li><a href="{{ route('myteachers')}}">My Teachers</a></li>
+                <li><a href="{{ route('mysub')}}">Subjects</a></li>
               </ul>
             </li>
           </ul>

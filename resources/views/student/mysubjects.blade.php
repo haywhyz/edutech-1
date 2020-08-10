@@ -1,4 +1,4 @@
-@extends('teacher.layouts.app')
+@extends('student.layouts.app')
 
 @section('content')   <!-- page content -->
 <div class="right_col" role="main">
@@ -34,7 +34,7 @@
                   <tr>
                   <td>{{$no++}}</td>
                     <td>{{$subject->name}}</td>
-                    <td><button class="primary"></button></td>
+                    <td> <a href="{{route('showsub',[$subject->id])}}" class="btn btn-info">Show</a></td>
                   </tr>
                   @endforeach
                 </tbody>

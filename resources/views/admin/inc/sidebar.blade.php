@@ -24,6 +24,8 @@
           <ul class="nav side-menu">
             <li><a><i class="fa fa-home"></i> Menu <span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
+              <li><a href="{{ route('admin.students')}}">Students</a></li>
+              <li><a href="{{ route('admin.teachers')}}">Teachers</a></li>
               <li><a href="{{ route('admin.payments')}}">Payments</a></li>
                 <li><a href="{{ route('admin.subjects')}}">Subjects</a></li>
                 <li><a href="{{ route('admin.topics')}}">Topics</a></li>

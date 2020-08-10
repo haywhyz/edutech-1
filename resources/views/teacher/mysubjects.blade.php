@@ -34,7 +34,7 @@
                   <tr>
                   <td>{{$no++}}</td>
                     <td>{{$subject->name}}</td>
-                    <td><button class="primary"></button></td>
+                    <td> <a href="{{route('showsubject',[$subject->id])}}" class="btn btn-info">Show</a></td>
                   </tr>
                   @endforeach
                 </tbody>

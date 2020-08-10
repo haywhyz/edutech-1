@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 08, 2020 at 01:37 PM
+-- Generation Time: Aug 10, 2020 at 11:43 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `resources` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `resources_topic_id_foreign` (`topic_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `resources`
@@ -193,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `subjects_teacher_id_foreign` (`teacher_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `subjects`
@@ -202,7 +202,8 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 INSERT INTO `subjects` (`id`, `teacher_id`, `name`, `class_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 1, 'English Language', 'JSS1', '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
 (2, 2, 'Mathematics', 'JSS2', '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
-(3, 3, 'Computer Studies', 'JSS3', '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL);
+(3, 3, 'Computer Studies', 'JSS3', '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
+(4, 3, 'Civic Educations', 'JSS3', '2020-08-10 09:42:03', '2020-08-10 09:58:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -221,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `topics` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `topics_subject_id_foreign` (`subject_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `topics`
@@ -233,7 +234,8 @@ INSERT INTO `topics` (`id`, `name`, `subject_id`, `week_id`, `created_at`, `upda
 (3, 'The Mouse', 3, 1, '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
 (4, 'The Keyboard', 3, 2, '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
 (5, 'Pythagoras Theorem', 2, 2, '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
-(6, 'Active Voice ', 1, 2, '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL);
+(6, 'Active Voice ', 1, 2, '2020-04-15 09:42:13', '2020-04-15 09:42:13', NULL),
+(7, 'Sets', 2, 2, '2020-08-10 10:07:45', '2020-08-10 10:16:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -282,8 +284,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `role`, `class`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Tellas', 'student', 'JSS1', 'user@user.com', NULL, '$2y$10$FPIGgq.J/uobzOZ8JR8Tz.BYCliXdrTy491BlB.u1vveeJCWIrZ0W', 'SLluMySjCxTjjXHVPGNi1D21aPQA6dkrS3hqCVYYAh2a6JPApp2ca9lci1Hj', '2019-01-30 22:35:57', '2019-02-12 00:06:25'),
-(2, 'Joshua Paul', 'teacher', 'JSS1', 'veecthorpaul@gmail.com', NULL, '$2y$10$r4gw0Ak.JDj8jJ4dMwgJ1.vFDlqz8eNZ7xX9WgXrYJcNX5iyyl4xO', '9VWnN26ycsVM59KYbZd5LX5PXJYMe2cznQz7ouDJ53wQGQurWsXogxC2kfUc', '2020-08-06 07:21:08', '2020-08-06 07:21:08'),
+(1, 'Tellas', 'student', 'JSS1', 'user@user.com', NULL, '$2y$10$FPIGgq.J/uobzOZ8JR8Tz.BYCliXdrTy491BlB.u1vveeJCWIrZ0W', 'o3yI0FJfEYBG2OjYsBFlIesaMbOzhboQd8ougeUvM21n9NRNKg0sqcTrm9SB', '2019-01-30 22:35:57', '2019-02-12 00:06:25'),
+(2, 'Joshua Paul', 'teacher', 'JSS1', 'veecthorpaul@gmail.com', NULL, '$2y$10$r4gw0Ak.JDj8jJ4dMwgJ1.vFDlqz8eNZ7xX9WgXrYJcNX5iyyl4xO', '2LbFkgDmJMqYXdCLk6FMCzAiLqb9I1KuZTwLxucnq0Kbyt5vaX4b0fP2aK0G', '2020-08-06 07:21:08', '2020-08-06 07:21:08'),
 (3, 'Joshua Pauls', 'teacher', 'JSS2', 'pauljoshua45@gmail.com', NULL, '$2y$10$MW1w1mIT4VK3DkxyeWLkd.cvYUkWJFVSCFZ2GRYpZ/UaQTtUz73IS', 'KhWDTwOWyOyE5i2Fz8oV44qBL8b6JY3se6ilJFyga9EGad8vN0jBPG3XvJaN', '2020-08-06 08:13:44', '2020-08-06 08:13:44');
 COMMIT;
 

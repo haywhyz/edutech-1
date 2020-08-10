@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Subject;
-
+use App\Topic;
+use App\Resource;
 class TeacherController extends Controller
 {
     public function dashboard()
@@ -28,6 +29,22 @@ class TeacherController extends Controller
     {
         $subjects = Subject::where('class_id', '=', Auth::user()->class)->get();
         return view('teacher.mysubjects')->with('subjects', $subjects);
+    }
+
+    public function showsubject($id){
+
+        $subject = Subject::find($id);
+        $topics = Topic::where('subject_id', '=', $id)->get();
+
+        return view('teacher.showsubject',compact('subject', 'topics'));
+    }
+
+    public function showtopic($id){
+
+        $topic = Topic::find($id);
+        $resources = Resource::where('topic_id', '=', $id)->get();
+
+        return view('teacher.showtopic',compact('topic', 'resources'));
     }
 
 }

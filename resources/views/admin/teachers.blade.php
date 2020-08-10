@@ -1,4 +1,4 @@
-@extends('teacher.layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')   <!-- page content -->
 <div class="right_col" role="main">
@@ -13,7 +13,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>My Teachers</h2>
+              <h2>Teachers</h2>
               <div class="clearfix"></div>
             </div>
             @php($no=0)
@@ -25,8 +25,8 @@
                     <th>#</th>
                     <th>Teacher Name</th>
                     <th>Email</th>
+                    <th>Subject</th>
                     <th>Class</th>
-                    <th>Date</th>
                   </tr>
                 </thead>
 
@@ -37,8 +37,9 @@
                   <td>{{$no++}}</td>
                     <td>{{$teacher->name}}</td>
                     <td>{{$teacher->email}}</td>
+                    <td>{{\Illuminate\Support\Facades\DB::table('subjects')->where('teacher_id', $teacher->id)->value('name')}}</td>
+                  {{-- <td>{{$teacher->subjects->pluck('name')}}</td> --}}
                     <td>{{$teacher->class}}</td>
-                    <td>{{$teacher->created_at}}</td>
                   </tr>
                   @endforeach
                 </tbody>

@@ -13,33 +13,32 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>My Teachers</h2>
+              <h2>My Payments</h2>
               <div class="clearfix"></div>
             </div>
             @php($no=0)
-            @if(count($teachers) > 0)
+            @if(count($payments) > 0)
             <div class="x_content">
               <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Teacher Name</th>
-                    <th>Email</th>
-                    <th>Subject</th>
-                    <th>Class</th>
+                    <th>Student Name</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
                   </tr>
                 </thead>
 
                 <tbody>
                   <?php  $no=1; ?>
-                    @foreach($teachers as $teacher)
+                    @foreach($payments as $payment)
                   <tr>
                   <td>{{$no++}}</td>
-                    <td>{{$teacher->name}}</td>
-                    <td>{{$teacher->email}}</td>
-                    <td>{{\Illuminate\Support\Facades\DB::table('subjects')->where('teacher_id', $teacher->id)->value('name')}}</td>
-                  {{-- <td>{{$teacher->subjects->pluck('name')}}</td> --}}
-                    <td>{{$teacher->class}}</td>
+                    <td>{{$payment->student}}</td>
+                    <td>{{$payment->amount}}</td>
+                    <td class="text-{{($payment->payment_status == 'Approved') ? 'success' : 'danger'}}">,<strong>{{$payment->payment_status}}</strong></td>
+                    <td>{{$payment->created_at}}</td>
                   </tr>
                   @endforeach
                 </tbody>
